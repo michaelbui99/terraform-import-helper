@@ -24,9 +24,11 @@ export class AzureAdApplicationImportMapper implements IImportMapper {
         for (let instance of resource.instances) {
             const moduleName = instance.index_key
                 ? instance.index_key.replaceAll("-", "_")
-                : instance.attributes["display_name"].split(
-                      `${project}-${env}-`
-                  )[1];
+                : (
+                      instance.attributes["display_name"].split(
+                          `${project}-${env}-`
+                      )[1] as string
+                  ).replaceAll("-", "_");
             const to = `module.${env}.module.${moduleName}.${resource.type}.${resource.name}`;
             const id = instance.attributes["object_id"];
 
