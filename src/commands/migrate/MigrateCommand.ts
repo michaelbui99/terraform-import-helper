@@ -29,6 +29,7 @@ export type TFResourceInstance = {
 export type MigrateCommandOptions = {
     stateFile: string;
     environment: "prod" | "prod-test" | "test";
+    project: string;
 };
 
 export class MigrateCommand implements ICommand {
@@ -54,6 +55,7 @@ export class MigrateCommand implements ICommand {
                         console.log(
                             mapper.generateImports(
                                 options.environment,
+                                options.project,
                                 resource
                             )
                         );
