@@ -41,6 +41,7 @@ export class MigrateCommand implements ICommand {
                 "--environment <string>",
                 "Environment (prod, prod-test, test)"
             )
+            .option("--project <string>", "project (e.g. distribution)")
             .action((options: MigrateCommandOptions) => {
                 const fileContents = readFile(options.stateFile);
                 const state: TFStateFile = JSON.parse(fileContents);
