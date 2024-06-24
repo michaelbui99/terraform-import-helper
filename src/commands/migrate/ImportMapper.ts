@@ -28,7 +28,7 @@ export class AzureAdApplicationImportMapper implements IImportMapper {
                       `${project}-${env}-`
                   )[1];
             const to = `module.${env}.module.${moduleName}.${resource.type}.${resource.name}`;
-            const id = instance.attributes["id"];
+            const id = instance.attributes["object_id"];
 
             output += `{\nto = ${to}\n id = ${id}\n }\n`;
         }
