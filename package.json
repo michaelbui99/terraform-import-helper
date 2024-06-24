@@ -1,5 +1,5 @@
 {
-    "name": "terraform-import-helper",
+    "name": "@michaelbui99/terraform-import-helper",
     "version": "0.1.0",
     "description": "",
     "main": "./dist/index.js",
@@ -7,6 +7,9 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "clean": "rimraf ./dist",
         "build": "tsc --build"
+    },
+    "bin": {
+        "terraform-import-helper": "node ./dist/index.js"
     },
     "author": "Michael Bui <michaelbui99>",
     "license": "MIT",
