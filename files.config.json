@@ -1,0 +1,6 @@
+{
+    "stateFiles": [
+        "/home/mttb/development/playground/terraform-import-test/OK.Distribution.AzureAppRegistrations.Terraform/state-files/test/app-registrations/default.tfstate",
+        "/home/mttb/development/playground/terraform-import-test/OK.Distribution.AzureAppRegistrations.Terraform/state-files/test/app-registration-devx-board/default.tfstate"
+    ]
+}
