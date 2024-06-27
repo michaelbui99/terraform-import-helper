@@ -1,6 +1,6 @@
 import { TFResourceInstance } from "./MigrateCommand";
 
-export function extractModuleName(env: "prod" | "prod-test" | "test", project: string, instance: TFResourceInstance): string {
+export function extractModuleName(env: "prod" | "prodtest" | "test", project: string, instance: TFResourceInstance): string {
     // distribution-test-aftale-api -> ["", "aftale-api"] -> "aftale-api" -> "aftale_api"
     return instance.index_key
         ? instance.index_key.replaceAll("-", "_")

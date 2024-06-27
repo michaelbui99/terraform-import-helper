@@ -6,8 +6,8 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "clean": "rimraf ./dist",
-        "build": "tsc --build",
-        "prebuild": "npm run clean"
+        "prebuild": "npm run clean",
+        "build": "tsc --build"
     },
     "bin": {
         "terraform-import-helper": "node ./dist/index.js"

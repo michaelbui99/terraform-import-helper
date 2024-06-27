@@ -29,21 +29,21 @@ export type TFResourceInstance = {
 };
 
 export type MigrateCommandOptions = {
-    stateFile: string;
-    environment: "prod" | "prod-test" | "test";
+    // stateFile: string;
+    environment: "prod" | "prodtest" | "test";
     project: string;
     filesConfig: string;
 };
 
 export type FilesConfig = {
-    stateFiles: string[];
+    stateFiles: { [environment: string]: string[] };
 }
 
 export class MigrateCommand implements ICommand {
     register(program: Command): void {
         program
             .command("migrate")
-            .option("--state-file <string>", "Terraform state file")
+            // .option("--state-file <string>", "Terraform state file")
             .option(
                 "--environment <string>",
                 "Environment (prod, prod-test, test)"
@@ -54,7 +54,8 @@ export class MigrateCommand implements ICommand {
                 const configContents = readFile(options.filesConfig);
                 const config: FilesConfig = JSON.parse(configContents);
 
-                for (let stateFile of config.stateFiles) {
+                console.log(`######### ${options.environment} imports #########`)
+                for (let stateFile of config.stateFiles[options.environment]) {
                     const fileContents = readFile(stateFile);
                     const state: TFStateFile = JSON.parse(fileContents);
                     const context = new ImportContext(state.resources);
