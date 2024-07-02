@@ -1,7 +1,7 @@
 import { Command } from "commander";
 import { ICommand } from "../ICommand";
 import { readFile } from "../../io";
-import { AzureAdApplicationImportMapper, AzureAdServicePrincipalImportMapper, IImportMapper, RandomUuidImportMapper } from "./ImportMapper";
+import { AzureAdAppRoleAssignmentMapper, AzureAdApplicationImportMapper, AzureAdServicePrincipalDelegatedPermissionGrantImportMapper, AzureAdServicePrincipalImportMapper, IImportMapper, RandomUuidImportMapper } from "./ImportMapper";
 import { ImportContext } from "./ImportContext";
 
 export type TFStateFile = {
@@ -13,6 +13,7 @@ export type TFStateFile = {
 };
 
 export type TFResource = {
+    module?: string;
     mode: "data" | "managed";
     type: string;
     name: string;
@@ -63,7 +64,9 @@ export class MigrateCommand implements ICommand {
                     const mappers: { [type: string]: IImportMapper } = {
                         azuread_application: new AzureAdApplicationImportMapper(context),
                         azuread_service_principal: new AzureAdServicePrincipalImportMapper(context),
-                        random_uuid: new RandomUuidImportMapper(context)
+                        random_uuid: new RandomUuidImportMapper(context),
+                        azuread_app_role_assignment: new AzureAdAppRoleAssignmentMapper(context),
+                        azuread_service_principal_delegated_permission_grant: new AzureAdServicePrincipalDelegatedPermissionGrantImportMapper(context)
                     };
 
                     for (let resource of state.resources) {
